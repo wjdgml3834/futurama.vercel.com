@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { MEDIA_QUERY_END_POINT } from "../constants";
 
 const HomePage: NextPage = () => {
   return (
-    <div>
+    <HomeContainer>
       <Header>
-        <h1>Futurama</h1>
+        <Title>Futurama</Title>
         <nav>
           <List>
             <Item>
@@ -44,26 +45,43 @@ const HomePage: NextPage = () => {
       </Header>
 
       <ImgContainer>
-        <Img
+        <img
           src="https://cdn1.edgedatg.com/aws/v2/fxnow/Futurama/showimages/65a0fe866922189146d249543f3768d2/1600x900-Q90_65a0fe866922189146d249543f3768d2.jpg"
           alt="futurama-main-img"
+          className="MainImg"
         />
       </ImgContainer>
-    </div>
+    </HomeContainer>
   );
 };
 
 export default HomePage;
 
-const Header = styled.header`
+const HomeContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 `;
 
-const Title = styled.h1``;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #111111;
+  height: 50px;
+  font-size: 1rem;
+  color: white;
+  position: sticky;
+  top: 0;
+`;
 
-const Nav = styled.nav``;
+const Title = styled.h1`
+  margin-right: 20px;
+  font-size: 20px;
+`;
+
+const Nav = styled.nav`
+  width: 100%;
+`;
 const List = styled.ul`
   display: flex;
   list-style: none;
@@ -75,10 +93,23 @@ const Item = styled.li`
 `;
 
 const ImgContainer = styled.main`
+  width: 100vw;
   display: flex;
-  justify-content: center;
-`;
-
-const Img = styled.img`
-  width: 800px;
+  border-sizing: border-box;
+  background-color: #6f6f6f;
+  margin: 0 auto;
+  .MainImg {
+    width: 70%;
+    margin: 100px auto;
+    border-radius: 20%;
+  }
+  @media screen and (max-width: ${MEDIA_QUERY_END_POINT.MOBILE}) {
+    min-height: calc(100vh - 120px);
+  }
+  @media screen and (max-width: ${MEDIA_QUERY_END_POINT.TABLET}) {
+    .MainImg {
+      width: 80%;
+      min-height: calc(100vh - 120px);
+    }
+  }
 `;
